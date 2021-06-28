@@ -1,0 +1,7 @@
+[AppConfigService]
+Appid="base"
+Address=":10002"
+
+[LogService]
+Appid="tomato"
+Address="10.1.1.248:10001"
