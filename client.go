@@ -5,13 +5,25 @@ import (
 	"os"
 	"time"
 
+	"github.com/allegro/bigcache/v3"
 	"github.com/maybgit/glog"
 	"github.com/tricobbler/config/proto"
 	"google.golang.org/grpc"
 )
 
+var cache *bigcache.BigCache
+
+func init() {
+	cache, _ = bigcache.NewBigCache(bigcache.DefaultConfig(time.Second * 60))
+}
+
 //根据key获取配置信息
 func Get(key string) (string, error) {
+	if v, err := cache.Get(key); err == nil {
+		glog.Info("get cache ", App.AppConfigService.Appid, key)
+		return string(v), nil
+	}
+
 	client := getClient()
 	defer client.close()
 	out, err := client.RPC.GetConfigValue(client.Ctx, &proto.ConfigRequest{
@@ -24,13 +36,16 @@ func Get(key string) (string, error) {
 	if out != nil && out.Code == 200 {
 		value = out.Message
 	}
+	cache.Set(key, []byte(value))
+	glog.Info("set cache ", App.AppConfigService.Appid, key)
+
 	return value, err
 }
 
 func GetString(key string) string {
 	str, err := Get(key)
 	if err != nil {
-		glog.Error("读取配置出错 ", key, err)
+		glog.Error("app-config GetString error ", key, err)
 	}
 	return str
 }
@@ -45,7 +60,7 @@ type configClient struct {
 func getClient() *configClient {
 	var client configClient
 	var err error
-	if client.Conn, err = grpc.Dial(App.AppConfigService.Address, grpc.WithInsecure(),grpc.WithBlock()); err != nil {
+	if client.Conn, err = grpc.Dial(App.AppConfigService.Address, grpc.WithInsecure(), grpc.WithBlock()); err != nil {
 		glog.Error(err)
 		return nil
 	} else {
