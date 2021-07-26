@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/allegro/bigcache/v3"
-	"github.com/maybgit/glog"
+	"github.com/gogrpc/glog"
 	"github.com/gogrpc/config/proto"
 	"google.golang.org/grpc"
 )
