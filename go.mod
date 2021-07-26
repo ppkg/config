@@ -6,10 +6,10 @@ require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/allegro/bigcache/v2 v2.2.5 // indirect
 	github.com/allegro/bigcache/v3 v3.0.0
-	github.com/gogrpc/glog v0.7.26
+	github.com/gogrpc/glog v0.7.27-0.20210726041625-8a34ce13bb9b
 	github.com/golang/protobuf v1.5.2
-	golang.org/x/net v0.0.0-20200226121028-0de0cce0169b // indirect
-	golang.org/x/sys v0.0.0-20200223170610-d5e6a3e2c0ae // indirect
-	golang.org/x/text v0.3.2 // indirect
-	google.golang.org/grpc v1.26.0
+	golang.org/x/net v0.0.0-20210716203947-853a461950ff // indirect
+	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
+	google.golang.org/genproto v0.0.0-20210722135532-667f2b7c528f // indirect
+	google.golang.org/grpc v1.39.0
 )
