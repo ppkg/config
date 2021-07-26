@@ -5,24 +5,24 @@ import (
 	"os"
 	"time"
 
-	"github.com/allegro/bigcache/v3"
+	// "github.com/allegro/bigcache/v3"
 	"github.com/gogrpc/glog"
 	"github.com/gogrpc/config/proto"
 	"google.golang.org/grpc"
 )
 
-var cache *bigcache.BigCache
+// var cache *bigcache.BigCache
 
-func init() {
-	cache, _ = bigcache.NewBigCache(bigcache.DefaultConfig(time.Second * 60))
-}
+// func init() {
+// 	cache, _ = bigcache.NewBigCache(bigcache.DefaultConfig(time.Second * 60))
+// }
 
 //根据key获取配置信息
 func Get(key string) (string, error) {
-	if v, err := cache.Get(key); err == nil {
-		glog.Info("get cache ", App.AppConfigService.Appid, key)
-		return string(v), nil
-	}
+	// if v, err := cache.Get(key); err == nil {
+	// 	glog.Info("get cache ", App.AppConfigService.Appid, key)
+	// 	return string(v), nil
+	// }
 
 	client := getClient()
 	defer client.close()
@@ -36,7 +36,7 @@ func Get(key string) (string, error) {
 	if out != nil && out.Code == 200 {
 		value = out.Message
 	}
-	cache.Set(key, []byte(value))
+	// cache.Set(key, []byte(value))
 	glog.Info("set cache ", App.AppConfigService.Appid, key)
 
 	return value, err
@@ -66,7 +66,7 @@ func getClient() *configClient {
 	} else {
 		client.RPC = proto.NewAppConfigClient(client.Conn)
 		client.Ctx = context.Background()
-		client.Ctx, client.Cf = context.WithTimeout(client.Ctx, time.Second*5)
+		client.Ctx, client.Cf = context.WithTimeout(client.Ctx, time.Second*60)
 		return &client
 	}
 }
