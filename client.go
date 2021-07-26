@@ -7,7 +7,7 @@ import (
 
 	"github.com/allegro/bigcache/v3"
 	"github.com/maybgit/glog"
-	"github.com/tricobbler/config/proto"
+	"github.com/gogrpc/config/proto"
 	"google.golang.org/grpc"
 )
 

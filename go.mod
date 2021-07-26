@@ -1,4 +1,4 @@
-module github.com/tricobbler/config
+module github.com/gogrpc/config
 
 go 1.13
 
