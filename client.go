@@ -19,6 +19,7 @@ var (
 func init() {
 	cache, _ = bigcache.NewBigCache(bigcache.DefaultConfig(time.Second * 60))
 	pol, _ = pool.New([]string{App.AppConfigService.Address}, pool.DefaultOptions)
+	glog.Info("初始化缓存，连接池")
 }
 
 //根据key获取配置信息
