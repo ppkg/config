@@ -1,6 +1,6 @@
 [AppConfigService]
 Appid="base"
-Address=":10002"
+Address="10.12.12.172:11111"
 
 [LogService]
 Appid="tomato"
