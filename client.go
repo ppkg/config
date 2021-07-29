@@ -13,12 +13,12 @@ import (
 
 var (
 	// cache *bigcache.BigCache
-	pol   pool.Pool
+	pol pool.Pool
 )
 
 func init() {
 	// cache, _ = bigcache.NewBigCache(bigcache.DefaultConfig(time.Second * 60))
-	pol, _ = pool.New([]string{App.AppConfigService.Address}, pool.DefaultOptions)
+	pol, _ = pool.New([]string{App.ConfigService.Address}, pool.DefaultOptions)
 	glog.Info("初始化缓存，连接池")
 }
 
@@ -30,18 +30,25 @@ func Get(key string) (string, error) {
 	// }
 
 	client := getClient()
+	defer client.Conn.Close()
+
 	out, err := client.RPC.GetConfigValue(client.Ctx, &proto.ConfigRequest{
-		AppName:     App.AppConfigService.Appid,
+		AppName:     App.ConfigService.Appid,
 		EnvCode:     os.Getenv("ASPNETCORE_ENVIRONMENT"),
+		// EnvCode:     "sit",
+		// EnvCode:     "uat",
+		// EnvCode:     "pro",
 		VersionName: os.Getenv("APPVERSION"),
 		Key:         key,
 	})
 	var value string
 	if out != nil && out.Code == 200 {
 		value = out.Message
+	}else {
+		glog.Error(out,err)
 	}
 	// cache.Set(key, []byte(value))
-	glog.Info("set cache ", App.AppConfigService.Appid, key)
+	// glog.Info("set cache ", App.ConfigService.Appid, key)
 
 	return value, err
 }
@@ -55,14 +62,21 @@ func GetString(key string) string {
 }
 
 type configClient struct {
-	Ctx context.Context
-	Cf  context.CancelFunc
-	RPC proto.AppConfigClient
+	Conn pool.Conn
+	Ctx  context.Context
+	Cf   context.CancelFunc
+	RPC  proto.AppConfigClient
 }
 
 func getClient() *configClient {
+	var err error
 	var client configClient
-	client.RPC = proto.NewAppConfigClient(pol.GetConn().Value())
+	client.Conn, err = pol.Get()
+	if err != nil {
+		glog.Error(err)
+		return nil
+	}
+	client.RPC = proto.NewAppConfigClient(client.Conn.Value())
 	client.Ctx = context.Background()
 	client.Ctx, client.Cf = context.WithTimeout(client.Ctx, time.Second*5)
 	return &client

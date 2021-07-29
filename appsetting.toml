@@ -1,5 +1,5 @@
-[AppConfigService]
-Appid="base"
+[ConfigService]
+Appid="datacenter"
 Address="10.12.12.172:11111"
 
 [LogService]

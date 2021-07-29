@@ -10,7 +10,7 @@ import (
 var App AppSetting
 
 type AppSetting struct {
-	AppConfigService struct {
+	ConfigService struct {
 		Appid   string
 		Address string
 	}
@@ -24,5 +24,5 @@ func init() {
 		log.Fatal(err)
 	}
 	glog.Info("AppConfigService init...")
-	glog.Info(App.AppConfigService.Appid, App.AppConfigService.Address)
+	glog.Info(App.ConfigService.Appid, App.ConfigService.Address)
 }

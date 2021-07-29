@@ -30,6 +30,8 @@ github.com/gogrpc/pool v0.0.0-20210726065024-9a75e7eaad34 h1:GBHy59cjtPG4qsnp9M6
 github.com/gogrpc/pool v0.0.0-20210726065024-9a75e7eaad34/go.mod h1:IU+lhbihNstDK6v3PWm+d3I+sQFgX9PZZvCAamzLDeg=
 github.com/gogrpc/pool v0.0.0-20210726065408-c3ccbf3381b6 h1:dVlAuQNHJtSaleATl56w6EUTf28IJUvdtc+8Tcx9RL4=
 github.com/gogrpc/pool v0.0.0-20210726065408-c3ccbf3381b6/go.mod h1:IU+lhbihNstDK6v3PWm+d3I+sQFgX9PZZvCAamzLDeg=
+github.com/gogrpc/pool v0.0.0-20210727090430-6b7fc48938a4 h1:K6BaxAsYasYwzgAKSmfWE8GIoVWqV/+qjPmGDuBHP8I=
+github.com/gogrpc/pool v0.0.0-20210727090430-6b7fc48938a4/go.mod h1:ho5/sgK3e1PVyGA9P6Gr4r8mTg/AmT6nZL0tlNjmrgM=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b h1:VKtxabqXZkF25pY9ekfRL6a582T4P37/31XEstQ5p58=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b/go.mod h1:SBH7ygxi8pfUlaOkMMuAQtPIUF8ecWP5IEl/CR7VP2Q=
 github.com/golang/mock v1.1.1/go.mod h1:oTYuIxOrZwtPieC+H1uAHpcLFnEyAGVDL/k47Jfbm0A=
