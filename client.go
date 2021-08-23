@@ -6,9 +6,9 @@ import (
 	"time"
 
 	// "github.com/allegro/bigcache/v3"
-	"github.com/gogrpc/config/proto"
-	"github.com/gogrpc/glog"
-	"github.com/gogrpc/pool"
+	"github.com/ppkg/config/proto"
+	"github.com/ppkg/glog"
+	"github.com/ppkg/pool"
 )
 
 var (
@@ -33,8 +33,8 @@ func Get(key string) (string, error) {
 	defer client.Conn.Close()
 
 	out, err := client.RPC.GetConfigValue(client.Ctx, &proto.ConfigRequest{
-		AppName:     App.ConfigService.Appid,
-		EnvCode:     os.Getenv("ASPNETCORE_ENVIRONMENT"),
+		AppName: App.ConfigService.Appid,
+		EnvCode: os.Getenv("ASPNETCORE_ENVIRONMENT"),
 		// EnvCode:     "sit",
 		// EnvCode:     "uat",
 		// EnvCode:     "pro",
@@ -44,8 +44,8 @@ func Get(key string) (string, error) {
 	var value string
 	if out != nil && out.Code == 200 {
 		value = out.Message
-	}else {
-		glog.Error(out,err)
+	} else {
+		glog.Error(out, err)
 	}
 	// cache.Set(key, []byte(value))
 	// glog.Info("set cache ", App.ConfigService.Appid, key)
