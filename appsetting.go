@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/BurntSushi/toml"
-	"github.com/ppkg/glog"
+	"github.com/maybgit/glog"
 )
 
 var App AppSetting
