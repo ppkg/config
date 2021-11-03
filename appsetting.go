@@ -1,8 +1,6 @@
 package config
 
 import (
-	"log"
-
 	"github.com/BurntSushi/toml"
 	"github.com/maybgit/glog"
 )
