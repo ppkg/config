@@ -7,7 +7,7 @@ import (
 
 	"github.com/allegro/bigcache/v3"
 	"github.com/maybgit/glog"
-	"github.com/ppkg/config/proto"
+	proto "github.com/ppkg/config/proto"
 	"github.com/ppkg/pool"
 )
 
