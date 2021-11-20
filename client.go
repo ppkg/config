@@ -49,7 +49,7 @@ func Get(key string) (string, error) {
 		glog.Error(out, err)
 	}
 	cache.Set(key, []byte(value))
-	glog.Info("set cache ", App.ConfigService.Appid, key)
+	glog.Info("set cache ", App.ConfigService.Appid, key, value)
 
 	return value, err
 }
