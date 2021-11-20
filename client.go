@@ -66,7 +66,7 @@ type configClient struct {
 	Conn pool.Conn
 	Ctx  context.Context
 	Cf   context.CancelFunc
-	RPC  proto.AppConfigClient
+	RPC  proto.AppconfigClient
 }
 
 func getClient() *configClient {
@@ -77,7 +77,7 @@ func getClient() *configClient {
 		glog.Error(err)
 		return nil
 	}
-	client.RPC = proto.NewAppConfigClient(client.Conn.Value())
+	client.RPC = proto.NewAppconfigClient(client.Conn.Value())
 	client.Ctx = context.Background()
 	client.Ctx, client.Cf = context.WithTimeout(client.Ctx, time.Second*5)
 	return &client
