@@ -4,7 +4,6 @@ go 1.13
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/allegro/bigcache/v3 v3.0.1
 	github.com/maybgit/glog v0.0.0-20210928064228-9506732eb074
 	github.com/ppkg/pool v0.0.0-20210823100706-eddc08d3c3aa
 	golang.org/x/net v0.0.0-20210716203947-853a461950ff // indirect
